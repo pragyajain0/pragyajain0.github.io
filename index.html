@@ -1,10 +1,51 @@
-# pragyajain0.github.io
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
+<head>
+  <title>Daily Nature Inspiration</title>
+</head>
+<body>
+  <h1>Daily Nature Inspiration</h1>
+  <button id="go">Inspire me</button>
 
+  <div>
+    <img id="photo" src="" alt="Nature photo" width="400">
+    <p id="caption"></p>
+    <blockquote id="quote">Click the button to see a quote.</blockquote>
+    <p id="byline"></p>
+  </div>
 
+  <script>
+    // Photos
+    const PHOTOS = [
+      { src: "photos/forest.jpg", title: "Forest" },
+      { src: "photos/mountain.jpg", title: "Mountain" },
+      { src: "photos/lake.jpg", title: "Lake" }
+    ];
 
+    // Quotes
+    const QUOTES = [
+      { text: "In all things of nature there is something of the marvelous.", author: "Aristotle" },
+      { text: "Adopt the pace of nature: her secret is patience.", author: "Ralph Waldo Emerson" },
+      { text: "Look deep into nature, and then you will understand everything better.", author: "Albert Einstein" }
+    ];
 
+    // Helper
+    function pick(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
 
-  
+    // Show a random photo + quote
+    function showInspiration() {
+      const p = pick(PHOTOS);
+      const q = pick(QUOTES);
+
+      document.getElementById("photo").src = p.src;
+      document.getElementById("caption").textContent = p.title;
+      document.getElementById("quote").textContent = '"' + q.text + '"';
+      document.getElementById("byline").textContent = "- " + q.author;
+    }
+
+    document.getElementById("go").addEventListener("click", showInspiration);
+  </script>
+</body>
 </html>
