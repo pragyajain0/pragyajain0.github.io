@@ -1,29 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Photos By Pragya</title>
+<title>Photos By me</title>
 <style>
-body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-img { width: 400px; border-radius: 8px; }
-blockquote { font-size: 18px; margin: 16px 0; }
-a.button {
-padding: 6px 10px;
-background: lightgray;
-border-radius: 4px;
-text-decoration: none;
-color: black;
-}
+  body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+  img { width: 400px; border-radius: 8px; }
+  blockquote { font-size: 18px; margin: 16px 0; }
+  .button {
+      padding: 6px 10px;
+      background: lightgray;
+      border-radius: 4px;
+      text-decoration: none;
+      color: black;
+      border: 1px solid #bfbfbf;
+      cursor: pointer;
+      display: inline-block;
+    }
 </style>
 </head>
 <body>
 <p>Created by Pragya Jain on 9.28.25</p>
 <h1>One photo I shot + one line I love.</h1>
-<p>Original photos with hand-picked quotes to inspire creativity. </p>
-<img src="photos/100_0314.JPG" alt="PinkYellowFlower">
-<blockquote>"Adopt the pace of nature: her secret is patience."</blockquote>
-<p>- Ralph Waldo Emerson</p>
-<a class="button" href="page3.html">Generate New Photo+Quote Combo</a>
-  <br><br>
-</body>
-</html> 
+<p>Original photos with hand-picked quotes to inspire creativity.</p>
 
+<img id="photo" src="" alt="Photo">
+<blockquote id="quote"></blockquote>
+<p id="byline"></p>
+<p><button class="button" id="next">Generate New Photo+Quote Combo</button></p>
+
+<script>
+const PAIRS = [
+    { src: "photos/100_0314.JPG", quote: "Adopt the pace of nature: her secret is patience.", author: "Ralph Waldo Emerson" },
+    { src: "photos/photo02.jpg",  quote: "Go where the quiet grows.",                            author: "Unknown" },
+    { src: "photos/photo03.jpg",  quote: "Let it settle.",                                      author: "Unknown" },
+    { src: "photos/photo04.jpg",  quote: "In all things of nature there is something of the marvelous.", author: "Aristotle" },
+    { src: "photos/photo05.jpg",  quote: "The earth has music for those who listen.",           author: "George Santayana" },
+    { src: "photos/photo06.jpg",  quote: "Look deep into nature, and then you will understand everything better.", author: "Albert Einstein" },
+    { src: "photos/photo07.jpg",  quote: "To walk in nature is to witness a thousand miracles.", author: "Mary Davis" },
+    { src: "photos/photo08.jpg",  quote: "Nature does not hurry, yet everything is accomplished.", author: "Lao Tzu" },
+    { src: "photos/photo09.jpg",  quote: "Live in the sunshine, swim the sea, drink the wild air.", author: "Ralph Waldo Emerson" },
+    { src: "photos/photo10.jpg",  quote: "The clearest way into the Universe is through a forest wilderness.", author: "John Muir" }
+  ];
+
+  let i = 0;
+    const photo  = document.getElementById('photo');
+    const quote  = document.getElementById('quote');
+    const byline = document.getElementById('byline');
+
+  function show() {
+    const p = PAIRS[i];
+    photo.src = p.src;
+    quote.textContent = `“${p.quote}”`;
+    byline.textContent = p.author ? `— ${p.author}` : "";
+  }
+
+document.getElementById('next').onclick = () => {
+  i = (i + 1) % PAIRS.length;  // next pair, loops at the end
+show();
+};
+
+show(); // first pair on load
+</script>
+</body>
+</html>
